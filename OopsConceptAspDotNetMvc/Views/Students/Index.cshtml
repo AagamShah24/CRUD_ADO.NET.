@@ -1,0 +1,28 @@
+﻿@model OopsConceptAspDotNetMvc.Models.City
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h2>Autocomplete Example</h2>
+
+@using (Html.BeginForm())
+{
+    <b>Search Product:</b>
+    @Html.TextBox("term", null, new { id = "txtSearch", @class = "form-control" })
+}
+
+<!-- Script references for jQuery and jQuery UI -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtSearch").autocomplete({
+            source: '@Url.Action("AutoCompleteSearch", "City")',
+            minLength: 1
+        });
+    });
+</script>
